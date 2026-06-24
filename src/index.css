@@ -138,6 +138,80 @@
     );
     background-size: 3px 3px;
   }
+  .gold-text-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(42 70% 72%),
+      hsl(40 60% 52%),
+      hsl(38 55% 45%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-border-glow {
+    box-shadow:
+      0 0 0 1px hsla(40, 55%, 55%, 0.25),
+      0 20px 60px -20px hsla(40, 55%, 45%, 0.25);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: hsl(var(--gold));
+  }
+  .hairline-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(40, 55%, 55%, 0.4),
+      transparent
+    );
+  }
+  .premium-card {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .premium-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      hsla(40, 55%, 55%, 0.06),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .premium-card:hover::before {
+    opacity: 1;
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  .shimmer-line {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(40, 60%, 60%, 0.5),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 6s linear infinite;
+  }
   @keyframes reveal-up {
     from {
       opacity: 0;

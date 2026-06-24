@@ -59,31 +59,39 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground grain">
       {/* NAV */}
       <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/60">
-        <div className="container flex items-center justify-between h-16">
-          <button onClick={() => scrollTo('home')} className="font-display text-2xl tracking-wide">
-            М<span className="text-gold">·</span>88
+        <div className="container flex items-center justify-between h-16 md:h-20">
+          <button onClick={() => scrollTo('home')} className="font-display text-2xl md:text-[28px] tracking-wide leading-none">
+            <span className="gold-text-gradient">М</span><span className="text-gold mx-0.5">·</span>88
+            <span className="hidden lg:inline-block ml-3 align-middle text-[10px] tracking-[0.3em] uppercase text-muted-foreground font-sans">Аренда</span>
           </button>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+          <nav className="hidden md:flex items-center gap-7 lg:gap-9 text-sm text-muted-foreground">
             {NAV.map((n) => (
-              <button key={n.id} onClick={() => scrollTo(n.id)} className="hover:text-gold transition-colors">
+              <button key={n.id} onClick={() => scrollTo(n.id)} className="story-link hover:text-gold transition-colors">
                 {n.label}
               </button>
             ))}
           </nav>
-          <Button onClick={() => scrollTo('contact')} className="hidden md:inline-flex bg-gold text-primary-foreground hover:bg-gold/90 rounded-none">
-            Оставить заявку
-          </Button>
+          <div className="hidden md:flex items-center gap-5">
+            <a href="tel:+74951416515" className="text-sm text-foreground hover:text-gold transition-colors font-display text-lg">
+              +7 (495) 141-65-15
+            </a>
+            <Button onClick={() => scrollTo('contact')} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none tracking-wide">
+              Оставить заявку
+            </Button>
+          </div>
           <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             <Icon name={menuOpen ? 'X' : 'Menu'} size={26} />
           </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden border-t border-border/60 bg-background/95 px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden border-t border-border/60 bg-background/95 px-6 py-5 flex flex-col gap-4">
             {NAV.map((n) => (
               <button key={n.id} onClick={() => { scrollTo(n.id); setMenuOpen(false); }} className="text-left text-muted-foreground hover:text-gold">
                 {n.label}
               </button>
             ))}
+            <div className="hairline-divider my-1" />
+            <a href="tel:+74951416515" className="font-display text-xl text-gold">+7 (495) 141-65-15</a>
           </div>
         )}
       </header>
@@ -97,15 +105,15 @@ const Index = () => {
         </div>
         <div className="container relative z-10 pt-24 pb-16">
           <div className="max-w-2xl">
-            <p className="reveal text-gold tracking-[0.25em] md:tracking-luxe text-[11px] md:text-sm uppercase mb-5 md:mb-6" style={{ animationDelay: '0.1s' }}>
+            <p className="reveal eyebrow text-gold tracking-[0.25em] md:tracking-luxe text-[11px] md:text-sm uppercase mb-5 md:mb-6" style={{ animationDelay: '0.1s' }}>
               Аренда · мкр. Мирный, Люберцы
             </p>
             <h1 className="reveal font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.98] md:leading-[0.95] mb-5 md:mb-6" style={{ animationDelay: '0.25s' }}>
-              Коммерческое<br />помещение <span className="text-gold">88 м²</span>
+              Коммерческое<br />помещение <span className="gold-text-gradient">88 м²</span>
             </h1>
             <p className="reveal text-base md:text-xl text-muted-foreground max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ animationDelay: '0.4s' }}>
               Первый этаж нового ЖК 2024 года напротив единственной в районе поликлиники.
-              Гарантированный трафик 300–800 человек в день — ваши клиенты уже рядом.
+              Гарантированный трафик 300–800 человек в день.
             </p>
             <div className="reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6" style={{ animationDelay: '0.55s' }}>
               <Button onClick={() => scrollTo('contact')} size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-13 w-full sm:w-auto">
@@ -115,9 +123,12 @@ const Index = () => {
                 Подробнее об объекте <Icon name="ArrowDown" size={16} />
               </button>
             </div>
-            <div className="reveal mt-10 md:mt-14 flex flex-wrap items-end gap-x-3 gap-y-1" style={{ animationDelay: '0.7s' }}>
-              <span className="font-display text-4xl sm:text-5xl md:text-6xl text-gold">220 000 ₽</span>
-              <span className="text-sm md:text-base text-muted-foreground mb-1 md:mb-2">/ мес · 2 500 ₽ за м²</span>
+            <div className="reveal mt-10 md:mt-14" style={{ animationDelay: '0.7s' }}>
+              <div className="hairline-divider max-w-xs mb-6" />
+              <div className="flex flex-wrap items-end gap-x-3 gap-y-1">
+                <span className="font-display text-4xl sm:text-5xl md:text-6xl gold-text-gradient">220 000 ₽</span>
+                <span className="text-sm md:text-base text-muted-foreground mb-1 md:mb-2">/ мес · 2 500 ₽ за м²</span>
+              </div>
             </div>
           </div>
         </div>
@@ -128,7 +139,7 @@ const Index = () => {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Объект</p>
+              <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Объект</p>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">
                 Пространство, которое работает на вас
               </h2>
@@ -171,7 +182,7 @@ const Index = () => {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
               {USAGE.map((u) => (
-                <div key={u.t} className="bg-background p-6 md:p-8 flex flex-col items-center text-center gap-3 md:gap-4 hover:bg-card transition-colors group">
+                <div key={u.t} className="premium-card bg-background p-6 md:p-8 flex flex-col items-center text-center gap-3 md:gap-4 hover:bg-card transition-colors group">
                   <Icon name={u.icon} size={28} className="text-gold group-hover:scale-110 transition-transform" />
                   <span className="text-sm">{u.t}</span>
                 </div>
@@ -184,11 +195,11 @@ const Index = () => {
       {/* SPECS */}
       <section id="specs" className="py-20 md:py-36 bg-card border-y border-border">
         <div className="container">
-          <p className="text-gold tracking-luxe text-xs uppercase mb-3">Характеристики</p>
+          <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-3">Характеристики</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-10 md:mb-14 max-w-xl leading-tight">Всё для вашего бизнеса</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {SPECS.map((s) => (
-              <div key={s.label} className="bg-card p-5 md:p-8">
+              <div key={s.label} className="premium-card bg-card p-5 md:p-8">
                 <Icon name={s.icon} size={26} className="text-gold mb-4 md:mb-6" />
                 <div className="text-[11px] md:text-xs text-muted-foreground uppercase tracking-wide mb-1">{s.label}</div>
                 <div className="font-display text-xl md:text-2xl">{s.value}</div>
@@ -201,7 +212,7 @@ const Index = () => {
               { i: 'FileSignature', t: 'Долгосрочный договор', d: 'С фиксацией арендной ставки' },
               { i: 'Eye', t: 'Гибкий график показов', d: 'Покажем объект в удобное время' },
             ].map((c) => (
-              <div key={c.t} className="border border-border p-6 md:p-7">
+              <div key={c.t} className="premium-card border border-border p-6 md:p-7 hover:border-gold/40">
                 <Icon name={c.i} size={24} className="text-gold mb-4" />
                 <div className="font-display text-lg md:text-xl mb-2">{c.t}</div>
                 <div className="text-sm text-muted-foreground">{c.d}</div>
@@ -215,7 +226,7 @@ const Index = () => {
       <section id="location" className="py-20 md:py-36">
         <div className="container grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
-            <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Локация</p>
+            <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Локация</p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">мкр. Мирный, Люберцы (Томилино)</h2>
             <div className="space-y-5 md:space-y-7">
               {[
@@ -239,7 +250,7 @@ const Index = () => {
           <div className="relative h-[320px] sm:h-[420px] md:h-[520px] border border-border overflow-hidden">
             <iframe
               title="Карта"
-              src="https://yandex.ru/map-widget/v1/?ll=37.948%2C55.654&z=13&text=Люберцы%20Томилино%20мкр%20Мирный"
+              src="https://yandex.ru/map-widget/v1/?text=Московская область, Люберцы, Мирный, улица Военкора Максима Фомина, 6&z=17"
               className="w-full h-full grayscale-[0.4] contrast-[1.1]"
               style={{ border: 0 }}
               loading="lazy"
@@ -251,7 +262,7 @@ const Index = () => {
       {/* GALLERY */}
       <section id="gallery" className="py-20 md:py-36 bg-card border-y border-border">
         <div className="container">
-          <p className="text-gold tracking-luxe text-xs uppercase mb-3">Галерея</p>
+          <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-3">Галерея</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Взгляд изнутри</h2>
           <p className="text-sm md:text-base text-muted-foreground max-w-lg mb-10 md:mb-14">
             Светлое помещение с панорамными окнами — оцените масштаб и потенциал пространства.
@@ -274,24 +285,29 @@ const Index = () => {
       <section id="contact" className="py-20 md:py-36">
         <div className="container grid md:grid-cols-2 gap-10 md:gap-16">
           <div>
-            <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Контакты</p>
+            <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Контакты</p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">Запросите информацию или забронируйте показ</h2>
             <p className="text-muted-foreground leading-relaxed mb-8 md:mb-10">
               Оставьте заявку — расскажем подробности, обсудим арендные каникулы и
               согласуем удобное время для просмотра помещения. Отвечаем в течение рабочего дня.
             </p>
             <div className="space-y-4 md:space-y-5">
-              <a href="tel:+70000000000" className="flex items-center gap-4 hover:text-gold transition-colors">
+              <a href="tel:+74951416515" className="flex items-center gap-4 hover:text-gold transition-colors">
                 <Icon name="Phone" size={20} className="text-gold" />
-                <span className="font-display text-xl md:text-2xl">+7 (000) 000-00-00</span>
+                <span className="font-display text-xl md:text-2xl">+7 (495) 141-65-15</span>
               </a>
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <Icon name="MapPin" size={20} className="text-gold shrink-0" />
-                <span>мкр. Мирный, г. Люберцы (Томилино)</span>
+              <a href="mailto:i.kogane@napetrovke.ru" className="flex items-center gap-4 hover:text-gold transition-colors">
+                <Icon name="Mail" size={20} className="text-gold shrink-0" />
+                <span className="text-base md:text-lg break-all">i.kogane@napetrovke.ru</span>
+              </a>
+              <div className="flex items-start gap-4 text-muted-foreground">
+                <Icon name="MapPin" size={20} className="text-gold shrink-0 mt-0.5" />
+                <span>Московская обл., г.о. Люберцы, пгт Мирный,<br className="hidden sm:block" /> ул. Военкора Максима Фомина, 6</span>
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="border border-border p-6 sm:p-8 md:p-10 bg-card space-y-5">
+          <form onSubmit={handleSubmit} className="relative border border-gold/25 gold-border-glow p-6 sm:p-8 md:p-10 bg-card space-y-5">
+            <div className="shimmer-line absolute top-0 inset-x-0 h-px" />
             <div>
               <label className="text-xs text-muted-foreground uppercase tracking-wide">Имя</label>
               <Input
@@ -332,10 +348,33 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-10">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <div className="font-display text-xl text-foreground">М<span className="text-gold">·</span>88 — Аренда</div>
-          <div>© 2024 · мкр. Мирный, Люберцы · 88 м² · 220 000 ₽/мес</div>
+      <footer className="border-t border-border">
+        <div className="hairline-divider" />
+        <div className="container py-12 md:py-14">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
+            <div>
+              <div className="font-display text-2xl text-foreground mb-3">
+                <span className="gold-text-gradient">М</span><span className="text-gold mx-0.5">·</span>88 <span className="text-muted-foreground text-lg">— Аренда</span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Коммерческое помещение 88 м² на первом этаже нового ЖК напротив поликлиники.
+              </p>
+            </div>
+            <div className="text-sm space-y-2.5">
+              <div className="text-gold tracking-luxe text-xs uppercase mb-4">Контакты</div>
+              <a href="tel:+74951416515" className="block text-foreground hover:text-gold transition-colors">+7 (495) 141-65-15</a>
+              <a href="mailto:i.kogane@napetrovke.ru" className="block text-muted-foreground hover:text-gold transition-colors break-all">i.kogane@napetrovke.ru</a>
+              <p className="text-muted-foreground pt-1">Московская обл., г.о. Люберцы, пгт Мирный, ул. Военкора Максима Фомина, 6</p>
+            </div>
+            <div className="text-sm space-y-2.5 md:text-right">
+              <div className="text-gold tracking-luxe text-xs uppercase mb-4">Условия</div>
+              <p className="font-display text-2xl text-gold">220 000 ₽<span className="text-muted-foreground text-base font-sans"> / мес</span></p>
+              <p className="text-muted-foreground">2 500 ₽ за м² · 88 м²</p>
+            </div>
+          </div>
+          <div className="border-t border-border mt-10 pt-6 text-xs text-muted-foreground">
+            © 2024 · Все права защищены
+          </div>
         </div>
       </footer>
     </div>
