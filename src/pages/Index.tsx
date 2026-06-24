@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,6 +48,18 @@ function scrollTo(id: string) {
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = mapRef.current;
+    if (!container || container.querySelector('iframe')) return;
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.async = true;
+    script.src = 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1576949f2db510e51cb4e86a6e7f99929edd3d5fbe5b6fb7304183f55b5fdd26&width=560&height=460&lang=ru_RU&scroll=true';
+    container.appendChild(script);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,11 +128,11 @@ const Index = () => {
               Гарантированный трафик 300–800 человек в день.
             </p>
             <div className="reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6" style={{ animationDelay: '0.55s' }}>
-              <Button onClick={() => scrollTo('contact')} size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-13 w-full sm:w-auto">
+              <Button onClick={() => scrollTo('contact')} size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-10 h-14 md:h-16 text-base md:text-lg w-full sm:w-auto">
                 Запросить информацию
               </Button>
-              <button onClick={() => scrollTo('object')} className="flex items-center justify-center sm:justify-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Подробнее об объекте <Icon name="ArrowDown" size={16} />
+              <button onClick={() => scrollTo('object')} className="flex items-center justify-center sm:justify-start gap-2 px-8 h-14 md:h-16 border border-border hover:border-gold/50 text-base md:text-lg text-muted-foreground hover:text-foreground transition-colors w-full sm:w-auto">
+                Подробнее об объекте <Icon name="ArrowDown" size={18} />
               </button>
             </div>
             <div className="reveal mt-10 md:mt-14" style={{ animationDelay: '0.7s' }}>
@@ -247,15 +259,10 @@ const Index = () => {
               ))}
             </div>
           </div>
-          <div className="relative h-[320px] sm:h-[420px] md:h-[520px] border border-border overflow-hidden">
-            <iframe
-              title="Карта"
-              src="https://yandex.ru/map-widget/v1/?text=Московская область, Люберцы, Мирный, улица Военкора Максима Фомина, 6&z=17"
-              className="w-full h-full grayscale-[0.4] contrast-[1.1]"
-              style={{ border: 0 }}
-              loading="lazy"
-            />
-          </div>
+          <div
+            ref={mapRef}
+            className="relative h-[320px] sm:h-[420px] md:h-[520px] border border-border overflow-hidden [&_iframe]:!w-full [&_iframe]:!h-full"
+          />
         </div>
       </section>
 
