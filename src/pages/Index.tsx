@@ -130,7 +130,7 @@ const Index = () => {
             <a href="tel:+74951416515" className="text-sm text-foreground hover:text-gold transition-colors font-display text-lg">
               +7 (495) 141-65-15
             </a>
-            <Button onClick={() => scrollTo('contact')} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none tracking-wide">
+            <Button onClick={() => setPopupOpen(true)} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none tracking-wide">
               Оставить заявку
             </Button>
           </div>
@@ -147,6 +147,9 @@ const Index = () => {
             ))}
             <div className="hairline-divider my-1" />
             <a href="tel:+74951416515" className="font-display text-xl text-gold">+7 (495) 141-65-15</a>
+            <Button onClick={() => { setPopupOpen(true); setMenuOpen(false); }} className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none tracking-wide mt-1">
+              Оставить заявку
+            </Button>
           </div>
         )}
       </header>
@@ -161,13 +164,13 @@ const Index = () => {
         <div className="container relative z-10 pt-24 pb-16">
           <div className="max-w-2xl">
             <p className="reveal eyebrow text-gold tracking-[0.25em] md:tracking-luxe text-[11px] md:text-sm uppercase mb-5 md:mb-6" style={{ animationDelay: '0.1s' }}>
-              Аренда · мкр. Мирный, Люберцы
+              Аренда · ЖК «Томилино Парк», Люберцы
             </p>
             <h1 className="reveal font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.98] md:leading-[0.95] mb-5 md:mb-6" style={{ animationDelay: '0.25s' }}>
               Коммерческое<br />помещение <span className="gold-text-gradient">88 м²</span>
             </h1>
             <p className="reveal text-base md:text-xl text-muted-foreground max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              Первый этаж нового ЖК 2024 года напротив единственной в районе поликлиники.
+              Первый этаж ЖК «Томилино Парк».
               Гарантированный трафик 300–800 человек в день.
             </p>
             <div className="reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6" style={{ animationDelay: '0.55s' }}>
@@ -393,15 +396,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      {/* FLOATING POPUP BUTTON */}
-      <button
-        onClick={() => setPopupOpen(true)}
-        className="fixed bottom-5 right-5 md:bottom-8 md:right-8 z-40 group flex items-center gap-3 bg-gold text-primary-foreground pl-5 pr-6 h-14 rounded-full gold-border-glow hover:bg-gold/90 transition-all hover:scale-105 animate-fade-in"
-      >
-        <Icon name="MessageSquareText" size={22} className="group-hover:rotate-6 transition-transform" />
-        <span className="font-display text-lg whitespace-nowrap">Оставить заявку</span>
-      </button>
 
       {/* POPUP DIALOG */}
       <Dialog open={popupOpen} onOpenChange={setPopupOpen}>
