@@ -40,7 +40,13 @@ const USAGE = [
   { icon: 'PawPrint', t: 'Ветклиника' },
 ];
 
-const GALLERY = [HERO_IMG, FACADE_IMG, HERO_IMG, FACADE_IMG];
+const PHOTO_1 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/8a386d71-edd4-4626-83ac-fffad2b3e5f5.jpg';
+const PHOTO_2 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/628b2d4e-8ea9-476c-aa25-aa92f2d1e6b7.jpg';
+const PHOTO_3 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/5f1ade8d-a6a2-47b0-9d51-972267c0e225.jpg';
+const PHOTO_4 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/b60dea8f-446f-4613-849f-756b538fc2d7.jpg';
+const PHOTO_5 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/565c1286-9527-4ca1-bb3e-3bbac78dddb3.jpg';
+
+const GALLERY = [PHOTO_1, PHOTO_2, PHOTO_3, PHOTO_4, PHOTO_5];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -322,12 +328,17 @@ const Index = () => {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {GALLERY.map((img, i) => (
-              <div key={i} className={`overflow-hidden group ${i === 0 ? 'col-span-2 row-span-2' : ''}`}>
+              <div
+                key={i}
+                className={`relative overflow-hidden group ring-1 ring-border hover:ring-gold/50 transition-all ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
+              >
                 <img
                   src={img}
-                  alt={`Фото ${i + 1}`}
+                  alt={`Коммерческое помещение — фото ${i + 1}`}
+                  loading="lazy"
                   className="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </div>
