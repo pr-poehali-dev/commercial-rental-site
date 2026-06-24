@@ -95,51 +95,52 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
         </div>
-        <div className="container relative z-10 pt-20">
+        <div className="container relative z-10 pt-24 pb-16">
           <div className="max-w-2xl">
-            <p className="reveal text-gold tracking-luxe text-xs md:text-sm uppercase mb-6" style={{ animationDelay: '0.1s' }}>
+            <p className="reveal text-gold tracking-[0.25em] md:tracking-luxe text-[11px] md:text-sm uppercase mb-5 md:mb-6" style={{ animationDelay: '0.1s' }}>
               Аренда · мкр. Мирный, Люберцы
             </p>
-            <h1 className="reveal font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6" style={{ animationDelay: '0.25s' }}>
+            <h1 className="reveal font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.98] md:leading-[0.95] mb-5 md:mb-6" style={{ animationDelay: '0.25s' }}>
               Коммерческое<br />помещение <span className="text-gold">88 м²</span>
             </h1>
-            <p className="reveal text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed" style={{ animationDelay: '0.4s' }}>
+            <p className="reveal text-base md:text-xl text-muted-foreground max-w-xl mb-8 md:mb-10 leading-relaxed" style={{ animationDelay: '0.4s' }}>
               Первый этаж нового ЖК 2024 года напротив единственной в районе поликлиники.
-              Гарантированный трафик 300–800 человек в день.
+              Гарантированный трафик 300–800 человек в день — ваши клиенты уже рядом.
             </p>
-            <div className="reveal flex flex-wrap items-center gap-6" style={{ animationDelay: '0.55s' }}>
-              <Button onClick={() => scrollTo('contact')} size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-13">
+            <div className="reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-6" style={{ animationDelay: '0.55s' }}>
+              <Button onClick={() => scrollTo('contact')} size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-13 w-full sm:w-auto">
                 Запросить информацию
               </Button>
-              <button onClick={() => scrollTo('object')} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <button onClick={() => scrollTo('object')} className="flex items-center justify-center sm:justify-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Подробнее об объекте <Icon name="ArrowDown" size={16} />
               </button>
             </div>
-            <div className="reveal mt-14 flex items-end gap-3" style={{ animationDelay: '0.7s' }}>
-              <span className="font-display text-5xl md:text-6xl text-gold">220 000 ₽</span>
-              <span className="text-muted-foreground mb-2">/ мес · 2 500 ₽ за м²</span>
+            <div className="reveal mt-10 md:mt-14 flex flex-wrap items-end gap-x-3 gap-y-1" style={{ animationDelay: '0.7s' }}>
+              <span className="font-display text-4xl sm:text-5xl md:text-6xl text-gold">220 000 ₽</span>
+              <span className="text-sm md:text-base text-muted-foreground mb-1 md:mb-2">/ мес · 2 500 ₽ за м²</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* OBJECT */}
-      <section id="object" className="py-28 md:py-36">
+      <section id="object" className="py-20 md:py-36">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <p className="text-gold tracking-luxe text-xs uppercase mb-5">Объект</p>
-              <h2 className="font-display text-4xl md:text-5xl mb-8 leading-tight">
+              <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Объект</p>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">
                 Пространство, которое работает на вас
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-5 md:mb-6">
                 Помещение свободной планировки без отделки — реализуйте собственный
                 дизайн-проект под любой формат бизнеса. Высота потолков 4,5 метра
-                открывает возможность организации мезонина.
+                открывает возможность организации мезонина и увеличения полезной площади.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-10">
+              <p className="text-muted-foreground leading-relaxed mb-8 md:mb-10">
                 Шесть панорамных окон в пол обеспечивают отличную видимость с улицы
-                и естественное освещение в течение всего дня. Подведены все центральные коммуникации.
+                и естественное освещение в течение всего дня. Подведены все центральные
+                коммуникации — можно приступать к ремонту сразу после подписания договора.
               </p>
               <div className="grid grid-cols-3 gap-6 border-t border-border pt-8">
                 {[
@@ -148,26 +149,30 @@ const Index = () => {
                   { v: '300+', l: 'чел/день' },
                 ].map((s) => (
                   <div key={s.l}>
-                    <div className="font-display text-4xl text-gold">{s.v}</div>
+                    <div className="font-display text-3xl md:text-4xl text-gold">{s.v}</div>
                     <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute -inset-3 border border-gold/30 -z-10" />
-              <img src={FACADE_IMG} alt="Фасад ЖК" className="w-full aspect-[4/5] object-cover" />
+            <div className="relative order-first md:order-last">
+              <div className="absolute -inset-2 md:-inset-3 border border-gold/30 -z-10" />
+              <img src={FACADE_IMG} alt="Фасад ЖК" className="w-full aspect-[4/3] md:aspect-[4/5] object-cover" />
             </div>
           </div>
 
           {/* USAGE */}
-          <div className="mt-28">
+          <div className="mt-20 md:mt-28">
             <p className="text-gold tracking-luxe text-xs uppercase mb-3 text-center">Назначение</p>
-            <h3 className="font-display text-3xl md:text-4xl text-center mb-12">Идеально подходит под</h3>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-center mb-4">Идеально подходит под</h3>
+            <p className="text-sm md:text-base text-muted-foreground text-center max-w-lg mx-auto mb-10 md:mb-12">
+              Готовый формат под медицину и сервис — арендаторы из этих сфер ценят
+              высокий пешеходный трафик возле поликлиники.
+            </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
               {USAGE.map((u) => (
-                <div key={u.t} className="bg-background p-8 flex flex-col items-center text-center gap-4 hover:bg-card transition-colors group">
-                  <Icon name={u.icon} size={30} className="text-gold group-hover:scale-110 transition-transform" />
+                <div key={u.t} className="bg-background p-6 md:p-8 flex flex-col items-center text-center gap-3 md:gap-4 hover:bg-card transition-colors group">
+                  <Icon name={u.icon} size={28} className="text-gold group-hover:scale-110 transition-transform" />
                   <span className="text-sm">{u.t}</span>
                 </div>
               ))}
@@ -177,28 +182,28 @@ const Index = () => {
       </section>
 
       {/* SPECS */}
-      <section id="specs" className="py-28 md:py-36 bg-card border-y border-border">
+      <section id="specs" className="py-20 md:py-36 bg-card border-y border-border">
         <div className="container">
           <p className="text-gold tracking-luxe text-xs uppercase mb-3">Характеристики</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-14 max-w-xl leading-tight">Всё для вашего бизнеса</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-10 md:mb-14 max-w-xl leading-tight">Всё для вашего бизнеса</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {SPECS.map((s) => (
-              <div key={s.label} className="bg-card p-8">
-                <Icon name={s.icon} size={28} className="text-gold mb-6" />
-                <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{s.label}</div>
-                <div className="font-display text-2xl">{s.value}</div>
+              <div key={s.label} className="bg-card p-5 md:p-8">
+                <Icon name={s.icon} size={26} className="text-gold mb-4 md:mb-6" />
+                <div className="text-[11px] md:text-xs text-muted-foreground uppercase tracking-wide mb-1">{s.label}</div>
+                <div className="font-display text-xl md:text-2xl">{s.value}</div>
               </div>
             ))}
           </div>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          <div className="mt-8 md:mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { i: 'CalendarClock', t: 'Арендные каникулы', d: 'На время ремонта — условия обсуждаются' },
               { i: 'FileSignature', t: 'Долгосрочный договор', d: 'С фиксацией арендной ставки' },
               { i: 'Eye', t: 'Гибкий график показов', d: 'Покажем объект в удобное время' },
             ].map((c) => (
-              <div key={c.t} className="border border-border p-7">
+              <div key={c.t} className="border border-border p-6 md:p-7">
                 <Icon name={c.i} size={24} className="text-gold mb-4" />
-                <div className="font-display text-xl mb-2">{c.t}</div>
+                <div className="font-display text-lg md:text-xl mb-2">{c.t}</div>
                 <div className="text-sm text-muted-foreground">{c.d}</div>
               </div>
             ))}
@@ -207,31 +212,31 @@ const Index = () => {
       </section>
 
       {/* LOCATION */}
-      <section id="location" className="py-28 md:py-36">
-        <div className="container grid md:grid-cols-2 gap-16 items-center">
+      <section id="location" className="py-20 md:py-36">
+        <div className="container grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
-            <p className="text-gold tracking-luxe text-xs uppercase mb-5">Локация</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-8 leading-tight">мкр. Мирный, Люберцы (Томилино)</h2>
-            <div className="space-y-7">
+            <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Локация</p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">мкр. Мирный, Люберцы (Томилино)</h2>
+            <div className="space-y-5 md:space-y-7">
               {[
                 { i: 'MapPin', t: 'Напротив поликлиники', d: 'Единственная в районе — гарантированный поток 300–800 человек в день' },
                 { i: 'Route', t: '10 км от МКАД', d: 'Удобный транспортный доступ' },
                 { i: 'Train', t: '10 минут до м. Котельники', d: 'Близость к метро' },
                 { i: 'SquareParking', t: 'Парковка перед фасадом', d: 'Удобно для клиентов и сотрудников' },
               ].map((l) => (
-                <div key={l.t} className="flex gap-5">
-                  <div className="shrink-0 w-12 h-12 border border-gold/40 flex items-center justify-center">
+                <div key={l.t} className="flex gap-4 md:gap-5">
+                  <div className="shrink-0 w-11 h-11 md:w-12 md:h-12 border border-gold/40 flex items-center justify-center">
                     <Icon name={l.i} size={20} className="text-gold" />
                   </div>
                   <div>
-                    <div className="font-display text-xl mb-1">{l.t}</div>
+                    <div className="font-display text-lg md:text-xl mb-1">{l.t}</div>
                     <div className="text-sm text-muted-foreground">{l.d}</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative h-[420px] md:h-[520px] border border-border overflow-hidden">
+          <div className="relative h-[320px] sm:h-[420px] md:h-[520px] border border-border overflow-hidden">
             <iframe
               title="Карта"
               src="https://yandex.ru/map-widget/v1/?ll=37.948%2C55.654&z=13&text=Люберцы%20Томилино%20мкр%20Мирный"
@@ -244,11 +249,14 @@ const Index = () => {
       </section>
 
       {/* GALLERY */}
-      <section id="gallery" className="py-28 md:py-36 bg-card border-y border-border">
+      <section id="gallery" className="py-20 md:py-36 bg-card border-y border-border">
         <div className="container">
           <p className="text-gold tracking-luxe text-xs uppercase mb-3">Галерея</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-14">Взгляд изнутри</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Взгляд изнутри</h2>
+          <p className="text-sm md:text-base text-muted-foreground max-w-lg mb-10 md:mb-14">
+            Светлое помещение с панорамными окнами — оцените масштаб и потенциал пространства.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {GALLERY.map((img, i) => (
               <div key={i} className={`overflow-hidden group ${i === 0 ? 'col-span-2 row-span-2' : ''}`}>
                 <img
@@ -263,27 +271,27 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-28 md:py-36">
-        <div className="container grid md:grid-cols-2 gap-16">
+      <section id="contact" className="py-20 md:py-36">
+        <div className="container grid md:grid-cols-2 gap-10 md:gap-16">
           <div>
-            <p className="text-gold tracking-luxe text-xs uppercase mb-5">Контакты</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-8 leading-tight">Запросите информацию или забронируйте показ</h2>
-            <p className="text-muted-foreground leading-relaxed mb-10">
+            <p className="text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Контакты</p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8 leading-tight">Запросите информацию или забронируйте показ</h2>
+            <p className="text-muted-foreground leading-relaxed mb-8 md:mb-10">
               Оставьте заявку — расскажем подробности, обсудим арендные каникулы и
-              согласуем удобное время для просмотра помещения.
+              согласуем удобное время для просмотра помещения. Отвечаем в течение рабочего дня.
             </p>
-            <div className="space-y-5">
+            <div className="space-y-4 md:space-y-5">
               <a href="tel:+70000000000" className="flex items-center gap-4 hover:text-gold transition-colors">
                 <Icon name="Phone" size={20} className="text-gold" />
-                <span className="font-display text-2xl">+7 (000) 000-00-00</span>
+                <span className="font-display text-xl md:text-2xl">+7 (000) 000-00-00</span>
               </a>
               <div className="flex items-center gap-4 text-muted-foreground">
-                <Icon name="MapPin" size={20} className="text-gold" />
+                <Icon name="MapPin" size={20} className="text-gold shrink-0" />
                 <span>мкр. Мирный, г. Люберцы (Томилино)</span>
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="border border-border p-8 md:p-10 bg-card space-y-5">
+          <form onSubmit={handleSubmit} className="border border-border p-6 sm:p-8 md:p-10 bg-card space-y-5">
             <div>
               <label className="text-xs text-muted-foreground uppercase tracking-wide">Имя</label>
               <Input
