@@ -3,6 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/611ef455-24a7-410c-a5bc-0b82dcf71c8d.jpg';
@@ -47,6 +48,7 @@ function scrollTo(id: string) {
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +67,48 @@ const Index = () => {
     e.preventDefault();
     toast.success('Заявка отправлена. Мы свяжемся с вами в ближайшее время.');
     setForm({ name: '', phone: '', message: '' });
+    setPopupOpen(false);
   };
+
+  const formFields = (
+    <>
+      <div>
+        <label className="text-xs text-muted-foreground uppercase tracking-wide">Имя</label>
+        <Input
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          required
+          placeholder="Как к вам обращаться"
+          className="mt-2 rounded-none bg-background border-border h-12"
+        />
+      </div>
+      <div>
+        <label className="text-xs text-muted-foreground uppercase tracking-wide">Телефон</label>
+        <Input
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+          required
+          placeholder="+7 (___) ___-__-__"
+          className="mt-2 rounded-none bg-background border-border h-12"
+        />
+      </div>
+      <div>
+        <label className="text-xs text-muted-foreground uppercase tracking-wide">Сообщение</label>
+        <Textarea
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          placeholder="Интересует показ / вопрос по объекту"
+          className="mt-2 rounded-none bg-background border-border min-h-[110px]"
+        />
+      </div>
+      <Button type="submit" size="lg" className="w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-none h-13">
+        Отправить заявку
+      </Button>
+      <p className="text-xs text-muted-foreground text-center">
+        Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+      </p>
+    </>
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground grain">
@@ -315,41 +358,7 @@ const Index = () => {
           </div>
           <form onSubmit={handleSubmit} className="relative border border-gold/25 gold-border-glow p-6 sm:p-8 md:p-10 bg-card space-y-5">
             <div className="shimmer-line absolute top-0 inset-x-0 h-px" />
-            <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-wide">Имя</label>
-              <Input
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                required
-                placeholder="Как к вам обращаться"
-                className="mt-2 rounded-none bg-background border-border h-12"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-wide">Телефон</label>
-              <Input
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                required
-                placeholder="+7 (___) ___-__-__"
-                className="mt-2 rounded-none bg-background border-border h-12"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-wide">Сообщение</label>
-              <Textarea
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="Интересует показ / вопрос по объекту"
-                className="mt-2 rounded-none bg-background border-border min-h-[110px]"
-              />
-            </div>
-            <Button type="submit" size="lg" className="w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-none h-13">
-              Отправить заявку
-            </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
-            </p>
+            {formFields}
           </form>
         </div>
       </section>
@@ -384,6 +393,30 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* FLOATING POPUP BUTTON */}
+      <button
+        onClick={() => setPopupOpen(true)}
+        className="fixed bottom-5 right-5 md:bottom-8 md:right-8 z-40 group flex items-center gap-3 bg-gold text-primary-foreground pl-5 pr-6 h-14 rounded-full gold-border-glow hover:bg-gold/90 transition-all hover:scale-105 animate-fade-in"
+      >
+        <Icon name="MessageSquareText" size={22} className="group-hover:rotate-6 transition-transform" />
+        <span className="font-display text-lg whitespace-nowrap">Оставить заявку</span>
+      </button>
+
+      {/* POPUP DIALOG */}
+      <Dialog open={popupOpen} onOpenChange={setPopupOpen}>
+        <DialogContent className="rounded-none border border-gold/25 gold-border-glow bg-card p-6 sm:p-8 max-w-md">
+          <div className="shimmer-line absolute top-0 inset-x-0 h-px" />
+          <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-2">Заявка</p>
+          <h3 className="font-display text-2xl md:text-3xl mb-1 leading-tight">Оставьте заявку</h3>
+          <p className="text-sm text-muted-foreground mb-6">
+            Перезвоним и расскажем подробности по объекту 88 м².
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {formFields}
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
