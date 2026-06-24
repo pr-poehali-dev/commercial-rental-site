@@ -40,13 +40,12 @@ const USAGE = [
   { icon: 'PawPrint', t: 'Ветклиника' },
 ];
 
-const PHOTO_1 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/8a386d71-edd4-4626-83ac-fffad2b3e5f5.jpg';
-const PHOTO_2 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/628b2d4e-8ea9-476c-aa25-aa92f2d1e6b7.jpg';
-const PHOTO_3 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/bucket/5f1ade8d-a6a2-47b0-9d51-972267c0e225.jpg';
-const PHOTO_4 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/b60dea8f-446f-4613-849f-756b538fc2d7.jpg';
-const PHOTO_5 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/565c1286-9527-4ca1-bb3e-3bbac78dddb3.jpg';
+const PHOTO_1 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/f5a13dae-1455-4b3c-83e8-ea074e45d10e.jpg';
+const PHOTO_2 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/1a645226-3049-480a-ae78-25260ea51402.jpg';
+const PHOTO_3 = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/edc23e24-030c-4038-a82a-e56825ca3c9b.jpg';
+const FLOORPLAN = 'https://cdn.poehali.dev/projects/bae17107-083a-4448-bb43-47ef012801a7/files/249ae011-bc9a-41f8-a911-311a761e00bf.jpg';
 
-const GALLERY = [PHOTO_1, PHOTO_2, PHOTO_3, PHOTO_4, PHOTO_5];
+const GALLERY = [PHOTO_1, PHOTO_2, PHOTO_3];
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -326,21 +325,58 @@ const Index = () => {
           <p className="text-sm md:text-base text-muted-foreground max-w-lg mb-10 md:mb-14">
             Светлое помещение с панорамными окнами — оцените масштаб и потенциал пространства.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid md:grid-cols-3 gap-3 md:gap-4">
             {GALLERY.map((img, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden group ring-1 ring-border hover:ring-gold/50 transition-all ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
+                className={`relative overflow-hidden group ring-1 ring-border hover:ring-gold/50 transition-all ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
               >
                 <img
                   src={img}
                   alt={`Коммерческое помещение — фото ${i + 1}`}
                   loading="lazy"
-                  className="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-700"
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${i === 0 ? 'aspect-[4/3] md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
+          </div>
+
+          {/* FLOORPLAN */}
+          <div className="mt-16 md:mt-24 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <div className="relative ring-1 ring-border hover:ring-gold/50 transition-all bg-background p-4 md:p-8">
+              <div className="shimmer-line absolute top-0 inset-x-0 h-px" />
+              <img
+                src={FLOORPLAN}
+                alt="Планировка помещения 88 м²"
+                loading="lazy"
+                className="w-full object-contain"
+              />
+            </div>
+            <div>
+              <p className="eyebrow text-gold tracking-luxe text-xs uppercase mb-4 md:mb-5">Планировка</p>
+              <h3 className="font-display text-2xl sm:text-3xl md:text-4xl mb-5 md:mb-6 leading-tight">
+                Свободная планировка 88 м²
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                Прямоугольное пространство без внутренних перегородок — легко адаптировать
+                под любой формат. Окна на три стороны и отдельный вход дают максимум
+                сценариев для зонирования.
+              </p>
+              <div className="grid grid-cols-2 gap-px bg-border">
+                {[
+                  { v: '88 м²', l: 'Общая площадь' },
+                  { v: '4,5 м', l: 'Высота потолков' },
+                  { v: '6', l: 'Панорамных окон' },
+                  { v: '1', l: 'Отдельный вход' },
+                ].map((s) => (
+                  <div key={s.l} className="premium-card bg-card p-5 md:p-6">
+                    <div className="font-display text-2xl md:text-3xl text-gold mb-1">{s.v}</div>
+                    <div className="text-xs text-muted-foreground">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
